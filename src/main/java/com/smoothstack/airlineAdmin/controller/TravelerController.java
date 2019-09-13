@@ -38,7 +38,7 @@ public class TravelerController {
 	@GetMapping(value = "/traveler/{id}", produces = { XML, JSON })
 	public ResponseEntity<Traveler> getTravelerById(@PathVariable Integer id) {
 		return travelService.getTravelerById(id);								 
-	}
+	}		
 	
 	@PostMapping(value ="/traveler", produces = { XML, JSON }, consumes = { XML, JSON })
 	@ResponseStatus(HttpStatus.CREATED)

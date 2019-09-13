@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,14 +59,21 @@ public class BookingController {
 	
 	@PostMapping(value ="/booking", produces = { XML, JSON }, consumes = { XML, JSON })
 	@ResponseStatus(HttpStatus.CREATED)
-	public Booking createBooking(@Valid @RequestBody Booking traveler) {
-		return bookingService.createBooking(traveler);
+	public ResponseEntity<Booking> createBooking(@Valid @RequestBody Booking booking) {
+		return bookingService.createBooking(booking);
 	}	
 
 	@PutMapping(value ="/booking", produces = { XML, JSON }, consumes = { XML, JSON })
 	@ResponseStatus(HttpStatus.OK)
-	public Booking updateBooking(@Valid @RequestBody Booking traveler) {
-		return bookingService.updateBooking(traveler);
+	public Booking updateBooking(@Valid @RequestBody Booking booking) {
+		return bookingService.updateBooking(booking);
 	}	
+
+	@DeleteMapping(value = "/booking", consumes = { JSON, XML }, produces = { JSON, XML})
+	public boolean cancleBooking(@Valid @RequestBody Booking booking) {
+		return bookingService.cancleBooking(booking);			
+	}
+	
+	
 	
 }
